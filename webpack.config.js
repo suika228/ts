@@ -1,29 +1,26 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    entry: {
-        bundle: './src/index.ts'
-    },
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: '[npm].js'
-    },
-    devServer: {
-        contentBase: path.join(__dirname, dist)
-    },
-    resolve: {
-        extensions: ['.ts', '.js']
-    },
-    devServer: {
-        contentBase: path.join(__dirname, 'dist'),
-        open: true
-    },
-    module: {
-        rules: [
-            {
-                loader: 'ts-loader',
-                test: /\.ts$/
-            }
-        ]
-    }
-}
+  entry: "./src/index.ts",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  devServer: {
+    static: path.join(__dirname, "dist"),
+    open: true,
+  },
+  module: {
+    rules: [
+      {
+        use: "ts-loader",
+        test: /\.ts$/,
+        exclude: /node_modules/,
+      },
+    ],
+  },
+};
